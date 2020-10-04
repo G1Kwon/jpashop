@@ -27,4 +27,15 @@ public class ItemService {
     public Item findOne(Long itemid) {
         return itemRepository.findOne(itemid);
     }
+
+    /**
+    * 영속성 컨텍스트가 자동 변경
+    * */
+    @Transactional
+    public void updateItem(Long id, String name, int price, int stockQuantity) {
+        Item findItem = itemRepository.findOne(id);
+        findItem.setName(name);
+        findItem.setPrice(price);
+        findItem.setStockQuantity(stockQuantity);
+    }
 }
